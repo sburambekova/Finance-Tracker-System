@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('finance.urls')), #default
     path('admin/', admin.site.urls),
+    path('finance/', include('finance.urls')),  # Include URLs from the finance app
 ]
+

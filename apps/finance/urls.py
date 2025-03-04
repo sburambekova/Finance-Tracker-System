@@ -1,8 +1,8 @@
-from django.contrib import admin
 from django.urls import path
-from . import views 
+from . import views
 
 urlpatterns = [
-    path('', views.project_list, name='list'), #default
-    path('<slug:project_slug>', views.project_detail, name='detail'),
+    path('project-list/', views.project_list, name='list'),  # Correct URL pattern
+    path('project-detail/<slug:project_slug>/', views.project_detail, name='detail'),
 ]
+
