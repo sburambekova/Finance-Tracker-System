@@ -1,32 +1,19 @@
-# from django.shortcuts import render
 
-# def project_list(request):
-#     return render(request, 'finance/project-list.js')
+from rest_framework import viewsets
+from .models import Category, Transaction, Goal
+from .serializers import CategorySerializer, TransactionSerializer, GoalSerializer
 
-# def project_detail(request, project_slug):
-#     return render(request, 'finance/project-detail.js')
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
+class TransactionViewSet(viewsets.ModelViewSet):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
 
-from django.http import JsonResponse
-
-def project_list(request):
-    # Example data to return as JSON
-    data = [
-        {"id": 1, "title": "Project 1", "description": "Description of Project 1"},
-        {"id": 2, "title": "Project 2", "description": "Description of Project 2"},
-    ]
-    return JsonResponse(data, safe=False)
-
-def project_detail(request, project_slug):
-    # Example detailed data
-    data = {
-        "title": f"Project {project_slug}",
-        "description": "Detailed description of the project",
-        "status": "active",
-    }
-    return JsonResponse(data)
+class GoalViewSet(viewsets.ModelViewSet):
+    queryset = Goal.objects.all()
+    serializer_class = GoalSerializer
 
 
-
-# Create your views here.
 

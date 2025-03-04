@@ -1,8 +1,14 @@
-from django.urls import path
-from . import views
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CategoryViewSet, TransactionViewSet, GoalViewSet
+
+router = DefaultRouter()
+router.register(r'categories', CategoryViewSet)
+router.register(r'transactions', TransactionViewSet)
+router.register(r'goals', GoalViewSet)
 
 urlpatterns = [
-    path('project-list/', views.project_list, name='list'),  # Correct URL pattern
-    path('project-detail/<slug:project_slug>/', views.project_detail, name='detail'),
+    path('', include(router.urls)),
 ]
 
