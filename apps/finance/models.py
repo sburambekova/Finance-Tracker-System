@@ -18,7 +18,7 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    image = models.ImageField(upload_to='category_pics/', blank=True, null=True)
+    image_url = models.URLField(max_length=500)
 
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
+
 
 const HomeScreen = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/finance/project-list/')
+    fetch('http://127.0.0.1:8000/categories')
         .then((response) => response.json())
         .then((data) => {
             console.log('Fetched data:', data);  // Log the data from the API
@@ -23,8 +25,8 @@ const HomeScreen = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.projectItem}>
-            <Text style={styles.projectTitle}>{item.title}</Text>
-            <Text>{item.description}</Text>
+            <Text>{item.id}</Text>
+            <Text>{item.name}</Text>
           </View>
         )}
       />
@@ -43,6 +45,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
+  projectImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+  },  
   projectItem: {
     padding: 10,
     marginVertical: 8,
@@ -54,6 +61,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
 
 export default HomeScreen;
 
